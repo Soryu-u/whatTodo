@@ -79,6 +79,9 @@
 
 .task__body {
   padding-left: 24px;
+  font-weight: bold;
+
+  font-size: 20px;
 }
 
 .task__dls {
@@ -100,4 +103,8 @@
 
 .todo__checkbox {
   cursor: pointer;
+}
+
+.task__description {
+  font-style: italic;
 }
