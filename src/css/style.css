@@ -1,0 +1,25 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* colors
+
+#9b8bc3
+#a8a6d0
+#10071c
+#db99c3
+
+
+*/
+
+body {
+  background-color: #9b8bc3;
+
+  font-family: "Fira Sans", sans-serif;
+}
+
+li {
+  list-style: none;
+}

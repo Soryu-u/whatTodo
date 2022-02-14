@@ -6,10 +6,47 @@
     <meta name="viewport" content="width=1080px, initial-scale=1.0" />
     <title>Todo prog</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Varela+Round&display=swap" rel="stylesheet">
+
+
+
     <link rel="stylesheet" href="./src/css/style.css">
+    <link rel="stylesheet" href="./src/css/header.css">
+    <link rel="stylesheet" href="./src/css/main.css">
   </head>
   <body>
-
+    <div class="page">
+        <header class="header">
+            <div class="left__nav">
+                squareshnik todo list
+            </div>
+        </header>
+        <main class="main">
+            <h2 class="main__head">Todo list</h2>
+            <div class="todo">
+                <div class="navbar">
+                    <div class="newTask">
+                        <input class="newTask__form" type="text" placeholder="Enter task name"></input>
+                        <button class="newTask__btn">add</button>
+                    </div>
+                </div>
+                
+                <ul class="todo__items" id="todo__items" todo-status="active">
+                    <li class="todo__item">
+                        <div class="todo__task"> 
+                            <input class="todo__checkbox" type="checkbox" id="horns" checked>
+                            <p class="task__body">Task</p>
+                            <p class="task__description"></p>
+                            <p class="task__data"></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+        </main>
+    </div>
 
     <script src="./src/js/main.js"></script>
   </body>

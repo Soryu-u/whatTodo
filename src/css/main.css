@@ -1,0 +1,70 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10vh;
+}
+
+.main__head {
+  color: white;
+}
+
+.navbar {
+  padding-top: 24px;
+  padding-bottom: 12px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.todo__item {
+  background-color: #a8a6d0;
+  border-radius: 10px;
+
+  width: 30vw;
+  padding: 12px;
+
+  margin: 24px;
+}
+
+.newTask {
+  display: flex;
+  align-items: center;
+}
+
+.newTask__form {
+  padding: 8px;
+
+  width: 100%;
+
+  background: rgb(225, 221, 255);
+  border: 2px solid #10071c;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #10071c;
+}
+
+.newTask__btn {
+  background-color: #db99c3;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px;
+
+  font-weight: bold;
+
+  font-family: "Varela Round", sans-serif;
+  text-transform: uppercase;
+}
+
+.todo__task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.todo__checkbox {
+}

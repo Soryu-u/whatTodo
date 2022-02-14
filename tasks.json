@@ -1,0 +1,56 @@
+[
+    {
+        "listId": 1,
+        "listTitle": "1 list",
+        "tasks": [
+            {
+                "taskId": 1,
+                "taskTitle": "task 1 list 1",
+                "done": false,
+                "due_date": "2022-02-15"
+            },
+            {
+                "taskId": 2,
+                "taskTitle": "task 2 list 1",
+                "done": false,
+                "due_date": "2022-02-15"
+            },
+            {
+                "taskId": 3,
+                "taskTitle": "task 3 list 1",
+                "done": false,
+                "due_date": "2022-02-15"
+            }
+        ]
+    },
+    {
+        "listId": 2,
+        "listTitle": "2 list",
+        "tasks": [
+            {
+                "taskId": 1,
+                "taskTitle": "task 1 list 2",
+                "done": false,
+                "due_date": "2022-02-15"
+            },
+            {
+                "taskId": 2,
+                "taskTitle": "task 2 list 2",
+                "done": false,
+                "due_date": "2022-02-15"
+            },
+            {
+                "taskId": 3,
+                "taskTitle": "task 3 list 2",
+                "done": false,
+                "due_date": "2022-02-14"
+            },
+            {
+                "taskId": 4,
+                "taskTitle": "task 4 list 2",
+                "done": true,
+                "due_date": "2022-02-15"
+            }
+        ]
+    }
+]
