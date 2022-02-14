@@ -26,6 +26,8 @@
   padding: 12px;
 
   margin: 24px;
+
+  box-shadow: 5px 5px 10px rgb(97, 97, 97);
 }
 
 .newTask {
@@ -39,6 +41,7 @@
   width: 100%;
 
   background: rgb(225, 221, 255);
+  box-shadow: 0px 2px 8px rgb(54, 54, 54);
   border: 2px solid #10071c;
   border-radius: 5px;
   font-size: 16px;
@@ -47,6 +50,7 @@
 
 .newTask__btn {
   background-color: #db99c3;
+  box-shadow: 0px 2px 8px rgb(54, 54, 54);
   border: none;
   color: white;
   padding: 10px;
@@ -57,14 +61,43 @@
 
   font-family: "Varela Round", sans-serif;
   text-transform: uppercase;
+
+  cursor: pointer;
 }
 
-.todo__task {
+.newTask__btn:hover {
+  background-color: #cf88b5;
+}
+
+.task__main {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 5px;
+}
+
+.task__body {
+  padding-left: 24px;
+}
+
+.task__dls {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+
+  padding: 15px 5px 5px 5px;
+  border-radius: 5px;
+  background-color: #9a98c2;
+}
+
+.todo__task {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .todo__checkbox {
+  cursor: pointer;
 }
