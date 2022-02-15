@@ -32,6 +32,12 @@
 
 .newTask {
   display: flex;
+  align-items: flex-end;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -48,6 +54,17 @@
   color: #10071c;
 }
 
+.newTask__date {
+  padding: 5px;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 0px 2px 8px rgb(54, 54, 54);
+  border: 2px solid #10071c;
+  background-color: rgb(225, 221, 255);
+
+  cursor: pointer;
+}
+
 .newTask__btn {
   background-color: #db99c3;
   box-shadow: 0px 2px 8px rgb(54, 54, 54);
@@ -55,7 +72,7 @@
   color: white;
   padding: 10px;
   border-radius: 5px;
-  margin: 5px;
+  margin-left: 5px;
 
   font-weight: bold;
 
@@ -92,6 +109,10 @@
   background-color: #9a98c2;
 }
 
+.task__description {
+  color: #424242;
+}
+
 .todo__task {
   display: flex;
   flex-direction: column;
@@ -100,4 +121,9 @@
 
 .todo__checkbox {
   cursor: pointer;
+}
+
+.task__done {
+  text-decoration: line-through;
+  color: #5f5f5f;
 }

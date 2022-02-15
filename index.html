@@ -23,7 +23,8 @@
                 squareshnik todo list
             </div>
             <div class="right__nav">
-                <p id="clock"></p>
+                <p id="clock">00:00:00</p>
+                <p id="calendar">NaN NaN 00 0000</p>
             </div>
         </header>
         <main class="main">
@@ -31,7 +32,17 @@
             <div class="todo">
                 <div class="navbar">
                     <div class="newTask">
-                        <input class="newTask__form" type="text" placeholder="Enter task name"></input>
+                        <div class="input">
+                            <input class="newTask__form" 
+                                type="text" 
+                                placeholder="Enter task name"></input>
+                            <input class="newTask__form" 
+                                type="text" 
+                                placeholder="Enter task description"></input>
+                            <input class="newTask__date" 
+                                type="date"></input>
+                        </div>
+
                         <button class="newTask__btn">add</button>
                     </div>
                 </div>
@@ -40,8 +51,10 @@
                     <li class="todo__item">
                         <div class="todo__task"> 
                             <div class="task__main">
-                                <input class="todo__checkbox" type="checkbox" id="horns" checked>
-                                <p class="task__body">Task</p>        
+                                <input class="todo__checkbox" 
+                                    type="checkbox" onclick="setStatus()" 
+                                    id="todoDone">
+                                <p id='task' class="task__body ">Task</p>        
                             </div>
                             <div class="task__dls">
                                 <p class="task__data"></p>
