@@ -99,6 +99,12 @@
   font-weight: bold;
 
   font-size: 20px;
+
+  cursor: pointer;
+}
+
+.task__body:hover {
+  text-decoration: underline;
 }
 
 .task__dls {
@@ -124,10 +130,16 @@
 
 .task__done {
   text-decoration: line-through;
-  color: #5f5f5f;
+  color: #6d6d6d;
 }
 .task__description {
   font-style: italic;
+}
+.overdue__task {
+  color: aliceblue;
+  background-color: #8a1532b4;
+}
 
-  color: #0a0a0a;
+.complete__task {
+  background-color: rgba(102, 187, 17, 0.596);
 }

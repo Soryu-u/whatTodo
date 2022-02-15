@@ -20,7 +20,7 @@
     <div class="page">
         <header class="header">
             <div class="left__nav">
-                squareshnik todo list
+                square<span style="color: rgb(231, 0, 0);">shnik</span> todo list
             </div>
             <div class="right__nav">
                 <p id="clock">00:00:00</p>
@@ -48,17 +48,14 @@
                 </div>
                 
                 <ul class="todo__items" id="todo__items" todo-status="active">
-                    <li class="todo__item">
-                        <div class="todo__task"> 
+                    <li class="todo__item ">
+                        <div class="todo__task "> 
                             <div class="task__main">
-                                <input class="todo__checkbox" 
-                                    type="checkbox" onclick="setStatus()" 
-                                    id="todoDone">
-                                <p id='task' class="task__body ">Task</p>        
+                                <p class="task__body" onclick="setStatus(event.target)">Task</p>        
                             </div>
                             <div class="task__dls">
-                                <p class="task__data"></p>
-                                <p class="task__description"></p>
+                                <p class="task__description ">Test description</p>
+                                <p class="task__data">2022-02-16</p>
                             </div>
                       
                         </div>
