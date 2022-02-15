@@ -96,6 +96,9 @@
 
 .task__body {
   padding-left: 24px;
+  font-weight: bold;
+
+  font-size: 20px;
 }
 
 .task__dls {
@@ -107,10 +110,6 @@
   padding: 15px 5px 5px 5px;
   border-radius: 5px;
   background-color: #9a98c2;
-}
-
-.task__description {
-  color: #424242;
 }
 
 .todo__task {
@@ -126,4 +125,9 @@
 .task__done {
   text-decoration: line-through;
   color: #5f5f5f;
+}
+.task__description {
+  font-style: italic;
+
+  color: #0a0a0a;
 }
