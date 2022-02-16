@@ -86,3 +86,11 @@ input:checked + .task__body {
   text-decoration: line-through;
   color: #252525a9;
 }
+
+.done {
+  display: none;
+}
+
+.deleted {
+  display: none;
+}

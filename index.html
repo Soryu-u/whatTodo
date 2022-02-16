@@ -34,7 +34,7 @@
         <h2 class="main__head">Todo list</h2>
         <div class="todo">
           <div class="navbar">
-            <!-- <div class="newTask">
+            <div class="newTask">
                         <div class="input">
                             <input class="newTask__form" 
                                 type="text" 
@@ -47,23 +47,40 @@
                         </div>
 
                         <button class="newTask__btn">add</button>
-                    </div> -->
+                    </div>
             <div class="routing">
               <p>Show:</p>
-              <button id="open" class="route__btn" onclick="renderOpenTodo()">
+              <button id="open" class="route__btn" onclick="getOpenTodo()">
                 open tasks
               </button>
-              <button
-                id="all"
-                class="route__btn active"
-                onclick="renderAllTodo()"
-              >
+              <button id="all" class="route__btn active" onclick="getAllTodo()">
                 all tasks
               </button>
             </div>
           </div>
 
-          <ul class="todo__items" id="todo__items" todo-status="active"></ul>
+          <ul class="todo__items" id="todo__items" todo-status="active">
+            <template>
+              <li class="todo__item done">
+                <div class="task__header">
+                  <input
+                    id="0"
+                    type="checkbox"
+                    class="todo__checkbox"
+                    onclick="changeStatus(this)"
+                  />
+                  <p class="task__body">test</p>
+                  <button class="delete__btn" onclick="deleteTask(this)">
+                    <img src="./src/img/icons8-trash.svg" alt="" />
+                  </button>
+                </div>
+                <div class="task__content">
+                  <p class="task__description">test</p>
+                  <p class="task__date ${isOverdue(i)}">2022-02-17</p>
+                </div>
+              </li>
+            </template>
+          </ul>
         </div>
       </main>
     </div>

@@ -10,7 +10,7 @@ let todos = [
     id: 2,
     title: "Second important task",
     description: "",
-    done: true,
+    done: false,
     due_date: new Date("2022-02-16"),
   },
   {
@@ -69,6 +69,13 @@ function isDone(i) {
   }
 }
 
+function isOpen() {
+  let openBtn = document.getElementById("open");
+  if (openBtn.classList.contains("active")) {
+    getOpenTodo();
+  }
+}
+
 function isOverdue(i) {
   if (todos[i].due_date) {
     let currentDate = new Date().setHours(0, 0, 0, 0, 0);
@@ -115,7 +122,7 @@ function appendTodo(todo, i) {
           onclick="changeStatus(this)" 
           ${isDone(i)}>
         <p class="task__body ">${todo[i].title}</p>
-        <button class="delete__btn">
+        <button class="delete__btn" onclick="deleteTask(this)">
           <img src="./src/img/icons8-trash.svg" alt="">
       </button>  
       </div>
@@ -132,15 +139,39 @@ function renderAllTodo() {
   }
 }
 
-function renderOpenTodo() {
-  for (let i = 0; i < todos.length; i++) {
-    if (isDone(i) == "") {
-      appendTodo(todos, i);
+function getAllTodo() {
+  let allBtn = document.getElementById("all");
+  let openBtn = document.getElementById("open");
+
+  openBtn.classList.remove("active");
+  allBtn.classList.add("active");
+
+  let tasksDone = document.querySelectorAll(".done");
+
+  for (let i = 0; i < tasksDone.length; i++) {
+    tasksDone[i].classList.remove("done");
+  }
+}
+
+function getOpenTodo() {
+  let allBtn = document.getElementById("all");
+  let openBtn = document.getElementById("open");
+
+  openBtn.classList.add("active");
+  allBtn.classList.remove("active");
+
+  let taskOpen = document.querySelectorAll(".todo__checkbox");
+
+  for (let i = 0; i < taskOpen.length; i++) {
+    if (taskOpen[i].checked) {
+      taskOpen[i].parentElement.parentElement.classList.add("done");
     }
   }
 }
 
 function changeStatus(e) {
+  isOpen();
+
   let taskId = e.id;
   if (todos[taskId - 1].id == taskId) {
     if (!todos[taskId - 1].done) {
@@ -149,6 +180,10 @@ function changeStatus(e) {
       todos[taskId - 1].done = false;
     }
   }
+}
+
+function deleteTask(e) {
+  e.parentElement.parentElement.classList.add("deleted");
 }
 
 renderAllTodo();
