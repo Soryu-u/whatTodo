@@ -61,8 +61,8 @@ function renderCalendar() {
   setInterval(updateCalendar, 1000);
 }
 
-function isDone(i) {
-  if (todos[i].done) {
+function isDone(todo) {
+  if (todo.done) {
     return "checked";
   } else {
     return "";
@@ -76,10 +76,10 @@ function isOpen() {
   }
 }
 
-function isOverdue(i) {
-  if (todos[i].due_date) {
+function isOverdue(todo) {
+  if (todo.due_date) {
     let currentDate = new Date().setHours(0, 0, 0, 0, 0);
-    let taskDate = todos[i].due_date.setHours(0, 0, 0, 0, 0);
+    let taskDate = todo.due_date.setHours(0, 0, 0, 0, 0);
 
     if (taskDate < currentDate) {
       return "overdue__task";
@@ -91,52 +91,51 @@ function isOverdue(i) {
   }
 }
 
-function getDate(i) {
-  if (todos[i].due_date) {
-    function month(i) {
-      if (todos[i].due_date.getMonth() % 0 > 0) {
-        return todos[i].due_date.getMonth() + 1;
+function getDate(todo) {
+  if (todo.due_date) {
+    let taskDate = todo.due_date;
+    function month() {
+      if (taskDate.getMonth() % 0 > 0) {
+        return taskDate.getMonth() + 1;
       } else {
-        return `0${todos[i].due_date.getMonth() + 1}`;
+        return `0${taskDate.getMonth() + 1}`;
       }
     }
 
-    let date = `${todos[i].due_date.getFullYear()}-${month(i)}-${todos[
-      i
-    ].due_date.getDate()}`;
+    let date = `${taskDate.getFullYear()}-${month()}-${taskDate.getDate()}`;
     return date;
   } else {
     return "";
   }
 }
 
-function appendTodo(todo, i) {
+function appendTodo(todo) {
   const todoElement = document.getElementById("todo__items");
 
   todoElement.innerHTML += `
   <li class="todo__item">
       <div class="task__header">
-        <input id="${todo[i].id}" 
+        <input id="${todo.id}" 
           type="checkbox" 
           class="todo__checkbox" 
           onclick="changeStatus(this)" 
-          ${isDone(i)}>
-        <p class="task__body ">${todo[i].title}</p>
+          ${isDone(todo)}>
+        <p class="task__body ">${todo.title}</p>
         <button class="delete__btn" onclick="deleteTask(this)">
           <img src="./src/img/icons8-trash.svg" alt="">
       </button>  
       </div>
       <div class="task__content ">
-          <p class="task__description">${todo[i].description}</p>
-          <p class="task__date ${isOverdue(i)}">${getDate(i)}</p>
+          <p class="task__description">${todo.description}</p>
+          <p class="task__date ${isOverdue(todo)}">${getDate(todo)}</p>
       </div>
   </li>`;
 }
 
 function renderAllTodo() {
-  for (let i = 0; i < todos.length; i++) {
-    appendTodo(todos, i);
-  }
+  todos.forEach((todo) => {
+    appendTodo(todo);
+  });
 }
 
 function getAllTodo() {
@@ -183,8 +182,36 @@ function changeStatus(e) {
 }
 
 function deleteTask(e) {
-  e.parentElement.parentElement.classList.add("deleted");
+  e.parentElement.parentElement.remove();
 }
+
+function createTodo(title, description, due_date) {
+  this.title = title;
+  this.description = description;
+  this.due_date ? "" : new Date(due_date);
+  this.done = false;
+  this.id = todos.length + 1;
+}
+
+const taskForm = document.forms["task"];
+const titleForm = document.getElementsByName("title");
+
+taskForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const formData = new FormData(taskForm);
+  const task = Object.fromEntries(formData.entries());
+  if (task.title) {
+    titleForm[0].classList.remove("invalid__input");
+    let todo = new createTodo(task.title, task.description, task.due_date);
+    todos.push(todo);
+    console.log(todos);
+    appendTodo(todo);
+    taskForm.reset();
+  } else {
+    console.log(titleForm);
+    titleForm[0].classList.add("invalid__input");
+  }
+});
 
 renderAllTodo();
 renderClock();

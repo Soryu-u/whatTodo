@@ -35,19 +35,22 @@
         <div class="todo">
           <div class="navbar">
             <div class="newTask">
-                        <div class="input">
-                            <input class="newTask__form" 
-                                type="text" 
-                                placeholder="Enter task name"></input>
-                            <input class="newTask__form" 
-                                type="text" 
-                                placeholder="Enter task description"></input>
-                            <input class="newTask__date" 
-                                type="date"></input>
-                        </div>
+                <form class="input" name="task">
+                    <input class="newTask__form " 
+                        type="text" 
+                        name="title"
+                        placeholder="Enter task name"></input>
+                    <input class="newTask__form" 
+                        type="text" 
+                        name="description"
+                        placeholder="Enter task description"></input>
+                    <input class="newTask__date" 
+                        type="date"
+                        name="due_date"></input>
 
-                        <button class="newTask__btn">add</button>
-                    </div>
+                <button type="submit" class="newTask__btn">add</button>
+                </form>
+            </div>
             <div class="routing">
               <p>Show:</p>
               <button id="open" class="route__btn" onclick="getOpenTodo()">
@@ -59,7 +62,7 @@
             </div>
           </div>
 
-          <ul class="todo__items" id="todo__items" todo-status="active">
+          <ul class="todo__items" id="todo__items">
             <template>
               <li class="todo__item done">
                 <div class="task__header">

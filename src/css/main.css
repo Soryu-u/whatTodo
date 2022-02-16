@@ -128,3 +128,7 @@
 
   text-decoration: underline;
 }
+
+.invalid__input {
+  border: 2px solid #e20505;
+}

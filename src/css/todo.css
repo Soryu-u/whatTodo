@@ -90,7 +90,3 @@ input:checked + .task__body {
 .done {
   display: none;
 }
-
-.deleted {
-  display: none;
-}
