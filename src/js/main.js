@@ -3,18 +3,25 @@ let todos = [
     id: 1,
     title: "First task",
     description: "just text description",
-    done: true,
+    done: false,
     due_date: new Date("2022-02-14"),
   },
   {
     id: 2,
     title: "Second important task",
     description: "",
-    done: false,
+    done: true,
     due_date: new Date("2022-02-16"),
   },
   {
     id: 3,
+    title: "Make tea",
+    description: "green tea, please",
+    done: false,
+    due_date: "",
+  },
+  {
+    id: 4,
     title: "Finish `em all!",
     description: "tasks, i mean tasks",
     done: false,
@@ -63,31 +70,37 @@ function isDone(i) {
 }
 
 function isOverdue(i) {
-  let currentDate = new Date().setHours(0, 0, 0, 0, 0);
-  let taskDate = todos[i].due_date.setHours(0, 0, 0, 0, 0);
+  if (todos[i].due_date) {
+    let currentDate = new Date().setHours(0, 0, 0, 0, 0);
+    let taskDate = todos[i].due_date.setHours(0, 0, 0, 0, 0);
 
-  console.log(currentDate);
-  console.log(taskDate);
-  if (taskDate < currentDate) {
-    return "overdue__task";
+    if (taskDate < currentDate) {
+      return "overdue__task";
+    } else {
+      return "";
+    }
   } else {
     return "";
   }
 }
 
 function getDate(i) {
-  function month(i) {
-    if (todos[i].due_date.getMonth() % 0 > 0) {
-      return todos[i].due_date.getMonth() + 1;
-    } else {
-      return `0${todos[i].due_date.getMonth() + 1}`;
+  if (todos[i].due_date) {
+    function month(i) {
+      if (todos[i].due_date.getMonth() % 0 > 0) {
+        return todos[i].due_date.getMonth() + 1;
+      } else {
+        return `0${todos[i].due_date.getMonth() + 1}`;
+      }
     }
-  }
 
-  let date = `${todos[i].due_date.getFullYear()}-${month(i)}-${todos[
-    i
-  ].due_date.getDate()}`;
-  return date;
+    let date = `${todos[i].due_date.getFullYear()}-${month(i)}-${todos[
+      i
+    ].due_date.getDate()}`;
+    return date;
+  } else {
+    return "";
+  }
 }
 
 function renderTodo() {
