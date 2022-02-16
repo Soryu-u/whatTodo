@@ -1,0 +1,85 @@
+.todo__item {
+  background-color: #a8a6d0;
+  border-radius: 10px;
+
+  width: 30vw;
+  padding: 12px;
+
+  margin: 24px;
+
+  box-shadow: 5px 5px 10px rgb(97, 97, 97);
+}
+
+.todo__task {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.task__main {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 5px;
+}
+
+.todo__checkbox {
+  cursor: pointer;
+}
+
+.task__body {
+  padding-left: 24px;
+  font-weight: bold;
+
+  font-size: 20px;
+}
+
+.delete__task {
+  position: absolute;
+  right: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  transition: transform 0.3s;
+}
+
+.delete__task:hover {
+  transform: scale(1.2);
+}
+
+.task__dls {
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  padding: 15px 5px 5px 5px;
+  border-radius: 5px;
+  background-color: #9a98c2;
+}
+
+.task__description {
+  padding: 5px;
+  font-style: italic;
+}
+
+.task__date {
+  padding: 5px;
+}
+
+.overdue__task {
+  color: aliceblue;
+
+  border-radius: 5px;
+  background-color: #8a1532b4;
+}
+
+input:checked + .task__body {
+  text-decoration: line-through;
+  color: #252525a9;
+}

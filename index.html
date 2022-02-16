@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="./src/css/style.css">
     <link rel="stylesheet" href="./src/css/header.css">
     <link rel="stylesheet" href="./src/css/main.css">
+    <link rel="stylesheet" href="./src/css/todo.css">
   </head>
   <body>
     <div class="page">
@@ -30,7 +31,7 @@
         <main class="main">
             <h2 class="main__head">Todo list</h2>
             <div class="todo">
-                <div class="navbar">
+                <!-- <div class="navbar">
                     <div class="newTask">
                         <div class="input">
                             <input class="newTask__form" 
@@ -45,21 +46,32 @@
 
                         <button class="newTask__btn">add</button>
                     </div>
-                </div>
+                    <div class="routing">
+                        <p>Show:</p>
+                        <button class="route__btn">open tasks</button>
+                        <button class="route__btn active">all tasks</button>
+                    </div>
+                </div> -->
                 
                 <ul class="todo__items" id="todo__items" todo-status="active">
-                    <li class="todo__item ">
-                        <div class="todo__task "> 
-                            <div class="task__main">
-                                <p class="task__body" onclick="setStatus(event.target)">Task</p>        
+                    <template>
+                        <li class="todo__item ">
+                            <div class="todo__task "> 
+                                <div class="task__main">
+                                    <input type="checkbox" class="todo__checkbox">
+                                    <p class="task__body">Task</p>     
+                                    <button class="delete__task">
+                                        <img src="./src/img/icons8-trash.svg" alt="">
+                                    </button>   
+                                </div>
+                                <div class="task__dls">
+                                    <p class="task__description ">Test description</p>
+                                    <p class="task__date">2022-02-16</p>
+                                </div>
+                          
                             </div>
-                            <div class="task__dls">
-                                <p class="task__description ">Test description</p>
-                                <p class="task__data">2022-02-16</p>
-                            </div>
-                      
-                        </div>
-                    </li>
+                        </li>
+                    </template>
                 </ul>
             </div>
             

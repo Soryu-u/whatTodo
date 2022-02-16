@@ -1,4 +1,5 @@
 .main {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,23 +12,15 @@
 }
 
 .navbar {
-  padding-top: 24px;
-  padding-bottom: 12px;
+  position: absolute;
+  left: 24px;
+  top: 0;
+  padding: 16px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.todo__item {
-  background-color: #a8a6d0;
-  border-radius: 10px;
-
-  width: 30vw;
-  padding: 12px;
-
-  margin: 24px;
-
-  box-shadow: 5px 5px 10px rgb(97, 97, 97);
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .newTask {
@@ -42,6 +35,7 @@
 }
 
 .newTask__form {
+  margin: 5px;
   padding: 8px;
 
   width: 100%;
@@ -56,6 +50,8 @@
 
 .newTask__date {
   padding: 5px;
+  margin: 10px;
+
   width: 100%;
   border-radius: 5px;
   box-shadow: 0px 2px 8px rgb(54, 54, 54);
@@ -72,7 +68,7 @@
   color: white;
   padding: 10px;
   border-radius: 5px;
-  margin-left: 5px;
+  margin: 10px;
 
   font-weight: bold;
 
@@ -86,60 +82,42 @@
   background-color: #cf88b5;
 }
 
-.task__main {
+.routing {
+  margin-top: 24px;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 5px;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.task__body {
-  padding-left: 24px;
+.routing p {
+  font-family: "Varela Round", sans-serif;
   font-weight: bold;
+  font-size: 24px;
 
-  font-size: 20px;
+  color: rgb(255, 255, 255);
+}
+
+.route__btn {
+  padding: 3px;
+
+  font-size: 16px;
+  color: white;
 
   cursor: pointer;
+
+  background: none;
+  border: none;
+
+  transition: transform 0.3s;
 }
 
-.task__body:hover {
+.active {
+  font-size: 18px;
+  font-weight: bold;
   text-decoration: underline;
 }
 
-.task__dls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-
-  padding: 15px 5px 5px 5px;
-  border-radius: 5px;
-  background-color: #9a98c2;
-}
-
-.todo__task {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-.todo__checkbox {
-  cursor: pointer;
-}
-
-.task__done {
-  text-decoration: line-through;
-  color: #6d6d6d;
-}
-.task__description {
-  font-style: italic;
-}
-.overdue__task {
-  color: aliceblue;
-  background-color: #8a1532b4;
-}
-
-.complete__task {
-  background-color: rgba(102, 187, 17, 0.596);
+.route__btn:hover {
+  transform: scale(1.1);
+  text-decoration: underline;
 }
