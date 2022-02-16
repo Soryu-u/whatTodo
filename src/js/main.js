@@ -103,31 +103,54 @@ function getDate(i) {
   }
 }
 
-function renderTodo() {
-  function appendTodo(todo, i) {
-    const todoElement = document.getElementById("todo__items");
+function appendTodo(todo, i) {
+  const todoElement = document.getElementById("todo__items");
 
-    todoElement.innerHTML += `
-    <li class="todo__item ">
-        <div class="task__header">
-          <input type="checkbox" name="todo__checkbox" ${isDone(i)}>
-          <p class="task__body ">${todo[i].title}</p>
-          <button class="delete__btn">
-            <img src="./src/img/icons8-trash.svg" alt="">
-        </button>  
-        </div>
-        <div class="task__content ">
-            <p class="task__description">${todo[i].description}</p>
-            <p class="task__date ${isOverdue(i)}">${getDate(i)}</p>
-        </div>
-    </li>`;
-  }
+  todoElement.innerHTML += `
+  <li class="todo__item">
+      <div class="task__header">
+        <input id="${todo[i].id}" 
+          type="checkbox" 
+          class="todo__checkbox" 
+          onclick="changeStatus(this)" 
+          ${isDone(i)}>
+        <p class="task__body ">${todo[i].title}</p>
+        <button class="delete__btn">
+          <img src="./src/img/icons8-trash.svg" alt="">
+      </button>  
+      </div>
+      <div class="task__content ">
+          <p class="task__description">${todo[i].description}</p>
+          <p class="task__date ${isOverdue(i)}">${getDate(i)}</p>
+      </div>
+  </li>`;
+}
 
+function renderAllTodo() {
   for (let i = 0; i < todos.length; i++) {
     appendTodo(todos, i);
   }
 }
 
-renderTodo();
+function renderOpenTodo() {
+  for (let i = 0; i < todos.length; i++) {
+    if (isDone(i) == "") {
+      appendTodo(todos, i);
+    }
+  }
+}
+
+function changeStatus(e) {
+  let taskId = e.id;
+  if (todos[taskId - 1].id == taskId) {
+    if (!todos[taskId - 1].done) {
+      todos[taskId - 1].done = true;
+    } else {
+      todos[taskId - 1].done = false;
+    }
+  }
+}
+
+renderAllTodo();
 renderClock();
 renderCalendar();
