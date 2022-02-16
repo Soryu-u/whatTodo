@@ -56,19 +56,16 @@
                 <ul class="todo__items" id="todo__items" todo-status="active">
                     <template>
                         <li class="todo__item ">
-                            <div class="todo__task "> 
-                                <div class="task__main">
-                                    <input type="checkbox" class="todo__checkbox">
-                                    <p class="task__body">Task</p>     
-                                    <button class="delete__task">
-                                        <img src="./src/img/icons8-trash.svg" alt="">
-                                    </button>   
-                                </div>
-                                <div class="task__dls">
-                                    <p class="task__description ">Test description</p>
-                                    <p class="task__date">2022-02-16</p>
-                                </div>
-                          
+                            <div class="task__header">
+                                <input type="checkbox" class="todo__checkbox">
+                                <p class="task__body">Task</p>     
+                                <button class="delete__btn">
+                                    <img src="./src/img/icons8-trash.svg" alt="">
+                                </button>   
+                            </div>
+                            <div class="task__content">
+                                <p class="task__description ">Test description</p>
+                                <p class="task__date">2022-02-16</p>
                             </div>
                         </li>
                     </template>

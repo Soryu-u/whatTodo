@@ -1,27 +1,26 @@
 .todo__item {
   background-color: #a8a6d0;
   border-radius: 10px;
+  box-shadow: 5px 5px 10px rgb(97, 97, 97);
 
   width: 30vw;
-  padding: 12px;
 
+  padding: 12px;
   margin: 24px;
 
-  box-shadow: 5px 5px 10px rgb(97, 97, 97);
-}
-
-.todo__task {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
-.task__main {
+.task__header {
   position: relative;
+
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
+
   padding: 5px;
 }
 
@@ -31,26 +30,28 @@
 
 .task__body {
   padding-left: 24px;
-  font-weight: bold;
 
+  font-weight: bold;
   font-size: 20px;
 }
 
-.delete__task {
+.delete__btn {
   position: absolute;
   right: 5px;
+
   background: none;
   border: none;
+
   cursor: pointer;
 
   transition: transform 0.3s;
 }
 
-.delete__task:hover {
+.delete__btn:hover {
   transform: scale(1.2);
 }
 
-.task__dls {
+.task__content {
   position: relative;
 
   display: flex;
@@ -59,12 +60,14 @@
   flex-wrap: wrap;
 
   padding: 15px 5px 5px 5px;
+
   border-radius: 5px;
   background-color: #9a98c2;
 }
 
 .task__description {
   padding: 5px;
+
   font-style: italic;
 }
 

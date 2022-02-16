@@ -96,19 +96,17 @@ function renderTodo() {
 
     todoElement.innerHTML += `
     <li class="todo__item ">
-      <div class="todo__task">
-          <div class="task__main">
-            <input type="checkbox" name="todo__checkbox" ${isDone(i)}>
-            <p class="task__body ">${todo[i].title}</p>
-            <button class="delete__task">
-              <img src="./src/img/icons8-trash.svg" alt="">
-          </button>  
-          </div>
-          <div class="task__dls ">
-              <p class="task__description">${todo[i].description}</p>
-              <p class="task__date ${isOverdue(i)}">${getDate(i)}</p>
-          </div>
-      </div>
+        <div class="task__header">
+          <input type="checkbox" name="todo__checkbox" ${isDone(i)}>
+          <p class="task__body ">${todo[i].title}</p>
+          <button class="delete__btn">
+            <img src="./src/img/icons8-trash.svg" alt="">
+        </button>  
+        </div>
+        <div class="task__content ">
+            <p class="task__description">${todo[i].description}</p>
+            <p class="task__date ${isOverdue(i)}">${getDate(i)}</p>
+        </div>
     </li>`;
   }
 

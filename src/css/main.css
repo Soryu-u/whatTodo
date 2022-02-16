@@ -1,9 +1,11 @@
 .main {
   position: relative;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   margin-top: 10vh;
 }
 
@@ -15,9 +17,11 @@
   position: absolute;
   left: 24px;
   top: 0;
+
   padding: 16px;
   margin-top: 10px;
   margin-bottom: 10px;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -44,6 +48,7 @@
   box-shadow: 0px 2px 8px rgb(54, 54, 54);
   border: 2px solid #10071c;
   border-radius: 5px;
+
   font-size: 16px;
   color: #10071c;
 }
@@ -53,6 +58,7 @@
   margin: 10px;
 
   width: 100%;
+
   border-radius: 5px;
   box-shadow: 0px 2px 8px rgb(54, 54, 54);
   border: 2px solid #10071c;
@@ -64,14 +70,14 @@
 .newTask__btn {
   background-color: #db99c3;
   box-shadow: 0px 2px 8px rgb(54, 54, 54);
-  border: none;
-  color: white;
-  padding: 10px;
   border-radius: 5px;
+  border: none;
+
+  padding: 10px;
   margin: 10px;
 
   font-weight: bold;
-
+  color: white;
   font-family: "Varela Round", sans-serif;
   text-transform: uppercase;
 
@@ -84,6 +90,7 @@
 
 .routing {
   margin-top: 24px;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -93,8 +100,7 @@
   font-family: "Varela Round", sans-serif;
   font-weight: bold;
   font-size: 24px;
-
-  color: rgb(255, 255, 255);
+  color: white;
 }
 
 .route__btn {
@@ -119,5 +125,6 @@
 
 .route__btn:hover {
   transform: scale(1.1);
+
   text-decoration: underline;
 }
