@@ -30,37 +30,38 @@
           <p id="calendar">NaN NaN 00 0000</p>
         </div>
       </header>
+      <div class="navbar">
+        <div class="newTask">
+            <form class="input" name="task">
+                <input class="newTask__form " 
+                    type="text" 
+                    name="title"
+                    placeholder="Enter task name"></input>
+                <input class="newTask__form" 
+                    type="text" 
+                    name="description"
+                    placeholder="Enter task description"></input>
+                <input class="newTask__date" 
+                    type="date"
+                    name="due_date"></input>
+
+            <button type="submit" class="newTask__btn">add</button>
+            </form>
+        </div>
+        <div class="routing">
+          <p>Show:</p>
+          <button id="open" class="route__btn" onclick="getOpenTodo()">
+            open tasks
+          </button>
+          <button id="all" class="route__btn active" onclick="getAllTodo()">
+            all tasks
+          </button>
+        </div>
+      </div>
       <main class="main">
         <h2 class="main__head">Todo list</h2>
         <div class="todo">
-          <div class="navbar">
-            <div class="newTask">
-                <form class="input" name="task">
-                    <input class="newTask__form " 
-                        type="text" 
-                        name="title"
-                        placeholder="Enter task name"></input>
-                    <input class="newTask__form" 
-                        type="text" 
-                        name="description"
-                        placeholder="Enter task description"></input>
-                    <input class="newTask__date" 
-                        type="date"
-                        name="due_date"></input>
-
-                <button type="submit" class="newTask__btn">add</button>
-                </form>
-            </div>
-            <div class="routing">
-              <p>Show:</p>
-              <button id="open" class="route__btn" onclick="getOpenTodo()">
-                open tasks
-              </button>
-              <button id="all" class="route__btn active" onclick="getAllTodo()">
-                all tasks
-              </button>
-            </div>
-          </div>
+          
 
           <ul class="todo__items" id="todo__items">
             <template>
