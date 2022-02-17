@@ -144,7 +144,7 @@ function getOpenTodo() {
 
   for (let i = 0; i < taskOpen.length; i++) {
     if (taskOpen[i].checked) {
-      taskOpen[i].parentElement.parentElement.classList.add("done");
+      taskOpen[i].closest("li").classList.add("done");
     }
   }
 }
