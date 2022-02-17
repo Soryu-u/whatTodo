@@ -60,8 +60,6 @@ function isOverdue(todo) {
     } else {
       return "";
     }
-  } else {
-    return "";
   }
 }
 
@@ -113,8 +111,8 @@ function appendTodo(todo) {
   </li>`;
 }
 
-function renderAllTodo(todos) {
-  todos.forEach((todo) => {
+function renderAllTodo(todo) {
+  todo.forEach((todo) => {
     appendTodo(todo);
   });
 }
@@ -194,19 +192,6 @@ function deleteTask(e) {
   });
 
   e.closest("li").remove();
-}
-
-function createTodo(title, description, due_date) {
-  let todo = {
-    id: todos.length + 1,
-    title: title,
-    description: description,
-    done: false,
-    due_date: due_date ? new Date(due_date) : "",
-  };
-
-  todos.push(todo);
-  return todo;
 }
 
 const taskForm = document.forms["task"];
