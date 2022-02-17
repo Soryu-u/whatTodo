@@ -1,56 +1,32 @@
-[
+{
+  "todos" : [
     {
-        "listId": 1,
-        "listTitle": "1 list",
-        "tasks": [
-            {
-                "taskId": 1,
-                "taskTitle": "task 1 list 1",
-                "done": false,
-                "due_date": "2022-02-15"
-            },
-            {
-                "taskId": 2,
-                "taskTitle": "task 2 list 1",
-                "done": false,
-                "due_date": "2022-02-15"
-            },
-            {
-                "taskId": 3,
-                "taskTitle": "task 3 list 1",
-                "done": false,
-                "due_date": "2022-02-15"
-            }
-        ]
+      "id": 1,
+      "title": "First task",
+      "description": "just text description",
+      "done": false,
+      "due_date":"2022-02-14"
     },
     {
-        "listId": 2,
-        "listTitle": "2 list",
-        "tasks": [
-            {
-                "taskId": 1,
-                "taskTitle": "task 1 list 2",
-                "done": false,
-                "due_date": "2022-02-15"
-            },
-            {
-                "taskId": 2,
-                "taskTitle": "task 2 list 2",
-                "done": false,
-                "due_date": "2022-02-15"
-            },
-            {
-                "taskId": 3,
-                "taskTitle": "task 3 list 2",
-                "done": false,
-                "due_date": "2022-02-14"
-            },
-            {
-                "taskId": 4,
-                "taskTitle": "task 4 list 2",
-                "done": true,
-                "due_date": "2022-02-15"
-            }
-        ]
+      "id": 2,
+      "title": "Second important task",
+      "description": "",
+      "done": true,
+      "due_date":"2022-02-16"
+    },
+    {
+      "id": 3,
+      "title": "Make tea",
+      "description": "green tea, please",
+      "done": false,
+      "due_date": ""
+    },
+    {
+      "id": 4,
+      "title": "Finish `em all!",
+      "description": "tasks, i mean tasks",
+      "done": false,
+      "due_date":"2022-02-17"
     }
-]
+  ]
+}

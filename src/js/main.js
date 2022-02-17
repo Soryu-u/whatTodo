@@ -1,33 +1,7 @@
-let todos = [
-  {
-    id: 1,
-    title: "First task",
-    description: "just text description",
-    done: false,
-    due_date: new Date("2022-02-14"),
-  },
-  {
-    id: 2,
-    title: "Second important task",
-    description: "",
-    done: true,
-    due_date: new Date("2022-02-16"),
-  },
-  {
-    id: 3,
-    title: "Make tea",
-    description: "green tea, please",
-    done: false,
-    due_date: "",
-  },
-  {
-    id: 4,
-    title: "Finish `em all!",
-    description: "tasks, i mean tasks",
-    done: false,
-    due_date: new Date("2022-02-17"),
-  },
-];
+const localUrl = "http://localhost:8000";
+fetch(localUrl + `/tasks`)
+  .then((response) => response.json())
+  .then((tasks) => renderAllTodo(tasks));
 
 function renderClock() {
   function getCurrentTime() {
@@ -79,7 +53,7 @@ function isOpen() {
 function isOverdue(todo) {
   if (todo.due_date) {
     let currentDate = new Date().setHours(0, 0, 0, 0, 0);
-    let taskDate = todo.due_date.setHours(0, 0, 0, 0, 0);
+    let taskDate = new Date(todo.due_date).setHours(0, 0, 0, 0, 0);
 
     if (taskDate < currentDate) {
       return "overdue__task";
@@ -93,7 +67,7 @@ function isOverdue(todo) {
 
 function getDate(todo) {
   if (todo.due_date) {
-    let taskDate = todo.due_date;
+    let taskDate = new Date(todo.due_date);
     function month() {
       if (taskDate.getMonth() % 0 > 0) {
         return taskDate.getMonth() + 1;
@@ -101,8 +75,15 @@ function getDate(todo) {
         return `0${taskDate.getMonth() + 1}`;
       }
     }
+    function day() {
+      if (taskDate.getDate() % 0 > 0) {
+        return taskDate.getDate() + 1;
+      } else {
+        return `0${taskDate.getDate() + 1}`;
+      }
+    }
 
-    let date = `${taskDate.getFullYear()}-${month()}-${taskDate.getDate()}`;
+    let date = `${taskDate.getFullYear()}-${month()}-${day()}`;
     return date;
   } else {
     return "";
@@ -121,7 +102,7 @@ function appendTodo(todo) {
           onclick="changeStatus(this)" 
           ${isDone(todo)}>
         <p class="task__body ${isDone(todo)}">${todo.title}</p>
-        <button class="delete__btn" onclick="deleteTask(this)">
+        <button id="${todo.id}" class="delete__btn" onclick="deleteTask(this)">
           <img src="./src/img/icons8-trash.svg" alt="">
       </button>  
       </div>
@@ -132,7 +113,7 @@ function appendTodo(todo) {
   </li>`;
 }
 
-function renderAllTodo() {
+function renderAllTodo(todos) {
   todos.forEach((todo) => {
     appendTodo(todo);
   });
@@ -168,28 +149,50 @@ function getOpenTodo() {
   }
 }
 
+function sendRequest(method, url, body = null) {
+  const headers = {
+    "content-type": "application/json",
+  };
+
+  return fetch(url, {
+    method: method,
+    body: JSON.stringify(body),
+    headers: headers,
+  }).then((response) => {
+    return response.json();
+  });
+}
+
 function changeStatus(e) {
   isOpen();
   let taskId = e.id;
   let checkbox = document.getElementById(taskId);
   let taskBody = checkbox.parentElement.getElementsByClassName("task__body")[0];
-  console.log(taskBody);
-  console.log(checkbox);
-  if (todos[taskId - 1].id == taskId) {
-    if (!todos[taskId - 1].done) {
-      todos[taskId - 1].done = true;
-      taskBody.classList.toggle("checked");
-      checkbox.setAttribute("checked", true);
-    } else {
-      todos[taskId - 1].done = false;
-      taskBody.classList.toggle("checked");
+  let body = {};
 
-      checkbox.setAttribute("checked", false);
-    }
+  if (!taskBody.classList.contains("checked")) {
+    body = {
+      done: true,
+    };
+    taskBody.classList.toggle("checked");
+    checkbox.setAttribute("checked", true);
+
+    sendRequest("PATCH", localUrl + `/lists/5/tasks/${taskId}`, body);
+  } else {
+    body = {
+      done: false,
+    };
+    taskBody.classList.toggle("checked");
+    checkbox.setAttribute("checked", false);
+    sendRequest("PATCH", localUrl + `/lists/5/tasks/${taskId}`, body);
   }
 }
 
 function deleteTask(e) {
+  fetch(localUrl + `/lists/5/tasks/${e.id}`, {
+    method: "delete",
+  });
+
   e.closest("li").remove();
 }
 
@@ -215,14 +218,19 @@ taskForm.addEventListener("submit", (event) => {
   const task = Object.fromEntries(formData.entries());
   if (task.title) {
     titleForm[0].classList.remove("invalid__input");
-    let todo = createTodo(task.title, task.description, task.due_date);
-    appendTodo(todo);
+    let body = {
+      title: task.title,
+      description: task.description,
+      due_date: task.due_date ? task.due_date : null,
+    };
+    sendRequest("POST", localUrl + `/lists/5/tasks`, body).then((task) => {
+      appendTodo(task[0]);
+    });
     taskForm.reset();
   } else {
     titleForm[0].classList.add("invalid__input");
   }
 });
 
-renderAllTodo();
 renderClock();
 renderCalendar();

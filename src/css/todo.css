@@ -1,3 +1,6 @@
+.todo__items {
+}
+
 .todo__item {
   background-color: #a8a6d0;
   border-radius: 10px;
@@ -89,4 +92,10 @@
 
 .done {
   display: none;
+}
+
+@media screen and (max-width: 1080px) {
+  .todo__item {
+    width: 90vw;
+  }
 }
