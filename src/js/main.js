@@ -10,7 +10,7 @@ let todos = [
     id: 2,
     title: "Second important task",
     description: "",
-    done: false,
+    done: true,
     due_date: new Date("2022-02-16"),
   },
   {
@@ -120,7 +120,7 @@ function appendTodo(todo) {
           class="todo__checkbox" 
           onclick="changeStatus(this)" 
           ${isDone(todo)}>
-        <p class="task__body ">${todo.title}</p>
+        <p class="task__body ${isDone(todo)}">${todo.title}</p>
         <button class="delete__btn" onclick="deleteTask(this)">
           <img src="./src/img/icons8-trash.svg" alt="">
       </button>  
@@ -170,27 +170,40 @@ function getOpenTodo() {
 
 function changeStatus(e) {
   isOpen();
-
   let taskId = e.id;
+  let checkbox = document.getElementById(taskId);
+  let taskBody = checkbox.parentElement.getElementsByClassName("task__body")[0];
+  console.log(taskBody);
+  console.log(checkbox);
   if (todos[taskId - 1].id == taskId) {
     if (!todos[taskId - 1].done) {
       todos[taskId - 1].done = true;
+      taskBody.classList.toggle("checked");
+      checkbox.setAttribute("checked", true);
     } else {
       todos[taskId - 1].done = false;
+      taskBody.classList.toggle("checked");
+
+      checkbox.setAttribute("checked", false);
     }
   }
 }
 
 function deleteTask(e) {
-  e.parentElement.parentElement.remove();
+  e.closest("li").remove();
 }
 
 function createTodo(title, description, due_date) {
-  this.title = title;
-  this.description = description;
-  this.due_date ? "" : new Date(due_date);
-  this.done = false;
-  this.id = todos.length + 1;
+  let todo = {
+    id: todos.length + 1,
+    title: title,
+    description: description,
+    done: false,
+    due_date: due_date ? new Date(due_date) : "",
+  };
+
+  todos.push(todo);
+  return todo;
 }
 
 const taskForm = document.forms["task"];
@@ -202,13 +215,10 @@ taskForm.addEventListener("submit", (event) => {
   const task = Object.fromEntries(formData.entries());
   if (task.title) {
     titleForm[0].classList.remove("invalid__input");
-    let todo = new createTodo(task.title, task.description, task.due_date);
-    todos.push(todo);
-    console.log(todos);
+    let todo = createTodo(task.title, task.description, task.due_date);
     appendTodo(todo);
     taskForm.reset();
   } else {
-    console.log(titleForm);
     titleForm[0].classList.add("invalid__input");
   }
 });

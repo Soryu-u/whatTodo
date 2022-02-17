@@ -82,7 +82,7 @@
   background-color: #8a1532b4;
 }
 
-input:checked + .task__body {
+.checked {
   text-decoration: line-through;
   color: #252525a9;
 }
