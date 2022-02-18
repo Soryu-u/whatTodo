@@ -90,7 +90,7 @@
   color: #252525a9;
 }
 
-.done {
+.hide-done .done {
   display: none;
 }
 
