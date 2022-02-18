@@ -1,7 +1,8 @@
 const localUrl = "http://localhost:8000";
 fetch(localUrl + `/tasks`)
   .then((response) => response.json())
-  .then((tasks) => renderAllTodo(tasks));
+  .then((tasks) => renderAllTodo(tasks))
+  .catch(alert);
 
 function renderClock() {
   function getCurrentTime() {
@@ -67,21 +68,21 @@ function getDate(todo) {
   if (todo.due_date) {
     let taskDate = new Date(todo.due_date);
     function month() {
-      if (taskDate.getMonth() % 0 > 0) {
+      if (taskDate.getMonth() + 1 > 9) {
         return taskDate.getMonth() + 1;
       } else {
         return `0${taskDate.getMonth() + 1}`;
       }
     }
     function day() {
-      if (taskDate.getDate() % 0 > 0) {
-        return taskDate.getDate() + 1;
+      if (taskDate.getDate() > 9) {
+        return taskDate.getDate();
       } else {
-        return `0${taskDate.getDate() + 1}`;
+        return `0${taskDate.getDate()}`;
       }
     }
 
-    let date = `${taskDate.getFullYear()}-${month()}-${day()}`;
+    let date = `${day()}.${month()}.${taskDate.getFullYear()}`;
     return date;
   } else {
     return "";
@@ -92,17 +93,17 @@ function appendTodo(todo) {
   const todoElement = document.getElementById("todo__items");
 
   todoElement.innerHTML += `
-  <li class="todo__item">
+  <li id="${todo.id}" class="todo__item">
       <div class="task__header">
-        <input id="${todo.id}" 
-          type="checkbox" 
-          class="todo__checkbox" 
-          onclick="changeStatus(this)" 
+        <input "
+          type="checkbox"
+          class="todo__checkbox"
+          onclick="changeStatus(this)"
           ${isDone(todo)}>
         <p class="task__body ${isDone(todo)}">${todo.title}</p>
-        <button id="${todo.id}" class="delete__btn" onclick="deleteTask(this)">
+        <button  class="delete__btn" onclick="deleteTask(this)">
           <img src="./src/img/icons8-trash.svg" alt="">
-      </button>  
+      </button>
       </div>
       <div class="task__content ">
           <p class="task__description">${todo.description}</p>
@@ -126,9 +127,9 @@ function getAllTodo() {
 
   let tasksDone = document.querySelectorAll(".done");
 
-  for (let i = 0; i < tasksDone.length; i++) {
-    tasksDone[i].classList.remove("done");
-  }
+  tasksDone.forEach((task) => {
+    task.classList.remove("done");
+  });
 }
 
 function getOpenTodo() {
@@ -140,58 +141,54 @@ function getOpenTodo() {
 
   let taskOpen = document.querySelectorAll(".todo__checkbox");
 
-  for (let i = 0; i < taskOpen.length; i++) {
-    if (taskOpen[i].checked) {
-      taskOpen[i].closest("li").classList.add("done");
+  taskOpen.forEach((task) => {
+    if (task.checked) {
+      task.closest("li").classList.add("done");
     }
-  }
+  });
 }
 
-function sendRequest(method, url, body = null) {
+async function sendRequest(method, url, body) {
   const headers = {
     "content-type": "application/json",
   };
 
-  return fetch(url, {
+  const response = await fetch(url, {
     method: method,
     body: JSON.stringify(body),
     headers: headers,
-  }).then((response) => {
-    return response.json();
   });
+  return await response.json();
 }
 
 function changeStatus(e) {
   isOpen();
-  let taskId = e.id;
-  let checkbox = document.getElementById(taskId);
-  let taskBody = checkbox.parentElement.getElementsByClassName("task__body")[0];
-  let body = {};
+  let taskId = e.closest("li").id;
+  let checkbox = document.getElementById(taskId).querySelector("input");
+  let taskBody = document.getElementById(taskId).querySelector(".task__body");
 
   if (!taskBody.classList.contains("checked")) {
-    body = {
+    sendRequest("PATCH", localUrl + `/lists/5/tasks/${taskId}`, {
       done: true,
-    };
+    }).catch(alert);
     taskBody.classList.toggle("checked");
     checkbox.setAttribute("checked", true);
-
-    sendRequest("PATCH", localUrl + `/lists/5/tasks/${taskId}`, body);
   } else {
-    body = {
+    sendRequest("PATCH", localUrl + `/lists/5/tasks/${taskId}`, {
       done: false,
-    };
+    }).catch(alert);
     taskBody.classList.toggle("checked");
-    checkbox.setAttribute("checked", false);
-    sendRequest("PATCH", localUrl + `/lists/5/tasks/${taskId}`, body);
+    checkbox.removeAttribute("checked");
   }
 }
 
 function deleteTask(e) {
-  fetch(localUrl + `/lists/5/tasks/${e.id}`, {
+  let li = e.closest("li");
+  fetch(localUrl + `/lists/5/tasks/${li.id}`, {
     method: "delete",
   });
 
-  e.closest("li").remove();
+  li.remove();
 }
 
 const taskForm = document.forms["task"];
@@ -201,20 +198,20 @@ taskForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(taskForm);
   const task = Object.fromEntries(formData.entries());
-  if (task.title) {
-    titleForm[0].classList.remove("invalid__input");
-    let body = {
-      title: task.title,
-      description: task.description,
-      due_date: task.due_date ? task.due_date : null,
-    };
-    sendRequest("POST", localUrl + `/lists/5/tasks`, body).then((task) => {
-      appendTodo(task[0]);
-    });
-    taskForm.reset();
-  } else {
-    titleForm[0].classList.add("invalid__input");
-  }
+
+  let body = {
+    title: task.title,
+    description: task.description,
+    due_date: task.due_date ? task.due_date : null,
+  };
+
+  task.title
+    ? sendRequest("POST", localUrl + `/lists/5/tasks`, body)
+        .then((task) => appendTodo(task[0]))
+        .then((_) => titleForm[0].classList.remove("invalid__input"))
+        .then((_) => taskForm.reset())
+        .catch(alert)
+    : titleForm[0].classList.add("invalid__input");
 });
 
 renderClock();

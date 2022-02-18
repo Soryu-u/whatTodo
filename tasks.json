@@ -30,3 +30,38 @@
     }
   ]
 }
+
+
+
+
+
+
+
+
+
+
+// function templateRender(todo) {
+//   console.log(todo);
+
+//   const todoItems = document.querySelector("ul");
+//   const template = document.querySelector("template");
+//   const cloneItem = template.content.cloneNode(true);
+
+//   const todoCheckbox = cloneItem.querySelector(".todo__checkbox");
+//   const taskBody = cloneItem.querySelector(".task__body");
+//   const deleteBtn = cloneItem.querySelector(".delete__btn");
+//   const taskDescription = cloneItem.querySelector(".task__description");
+//   const taskDate = cloneItem.querySelector(".task__date");
+
+//   console.log(todoCheckbox);
+
+//   todoCheckbox.setAttribute("id", `${todo.id}`);
+//   todoCheckbox.setAttribute("checked", `${isDone(todo)}`);
+//   deleteBtn.setAttribute(id, todo.id);
+
+//   taskBody.textContent = todo.title;
+//   taskDescription.textContent = todo.description;
+//   taskDate.textContent = getDate(todo);
+
+//   todoItems.appendChild(cloneItem);
+// }
