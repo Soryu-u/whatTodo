@@ -152,7 +152,7 @@ function changeStatus(input) {
     .querySelector(".task__body");
 
   sendRequest("PATCH", localUrl + `/lists/5/tasks/${taskLi.id}`, {
-    done: !taskBody.classList.contains("checked") ? true : false,
+    done,
   })
     .then((_) => taskLi.classList.toggle("done"))
     .then((_) => taskBody.classList.toggle("checked"))
