@@ -151,9 +151,22 @@ function changeStatus(input) {
     .getElementById(taskLi.id)
     .querySelector(".task__body");
 
-  sendRequest("PATCH", localUrl + `/lists/5/tasks/${taskLi.id}`, {
-    done=!done,
-  })
+  function status() {
+    let body;
+    if (taskLi.classList.contains("done")) {
+      body = {
+        done: false,
+      };
+      return body;
+    } else {
+      body = {
+        done: true,
+      };
+      return body;
+    }
+  }
+
+  sendRequest("PATCH", localUrl + `/lists/5/tasks/${taskLi.id}`, status())
     .then((_) => taskLi.classList.toggle("done"))
     .then((_) => taskBody.classList.toggle("checked"))
     .catch(alert);
@@ -179,7 +192,7 @@ taskForm.addEventListener("submit", (event) => {
   const task = Object.fromEntries(formData.entries());
 
   let body = {
-    title: task.title, 
+    title: task.title,
     description: task.description,
     due_date: task.due_date ? task.due_date : null,
   };
